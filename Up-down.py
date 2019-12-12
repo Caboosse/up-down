@@ -10,14 +10,14 @@ import boto3  # for cloudwatch publishing and access
 from multiping import MultiPing  # for ping process
 
 #set address
-#open mp instance
-#Send ping to address
-#Check each response with receive 
-def get_ping(addrs):    
+# open mp instance
+# Send ping to address
+# Check each response with receive 
+def get_ping();
+    addrs = ["1.1.1.1","8.8.8.8","75.75.75.75"]
     mp = MultiPing(addrs)
     mp.send()
     responses, no_responses = mp.receive(0.1)
-
 
 cloudwatch = boto3.client('cloudwatch')
 cloudwatch.put_metric_data(
