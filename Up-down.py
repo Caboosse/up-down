@@ -1,19 +1,23 @@
-from multiping import MultiPing
+#!/usr/bin/env python3
+
+from datetime import datetime
+
 #import sys
 #import psutil
 #import socket
 #import subprocess
-import boto3
-from datetime import datetime
+import boto3  # for cloudwatch publishing and access
+from multiping import MultiPing  # for ping process
 
-addrs = ["1.1.1.1","8.8.8.8","75.75.75.75"]
-mp = MultiPing(addrs)
-mp.send()
-responses, no_responses = mp.receive(0.1)
-for addr, rtt in responses.items():
-    print("%s responded in %f seconds" % (addr, rtt))
-if no_responses:
-    print("These addresses did not respond %s" % ", ".join(no_responses))
+#set address
+#open mp instance
+#Send ping to address
+#Check each response with receive 
+def get_ping(addrs)    
+    mp = MultiPing(addrs)
+    mp.send()
+    responses, no_responses = mp.receive(0.1)
+
 
 cloudwatch = boto3.client('cloudwatch')
 cloudwatch.put_metric_data(
@@ -32,3 +36,5 @@ cloudwatch.put_metric_data(
     ],
     Namespace='ADDRESS/TIME'
 )
+
+if __name__ == "__main__":
