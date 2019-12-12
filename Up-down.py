@@ -13,7 +13,7 @@ from multiping import MultiPing  # for ping process
 #open mp instance
 #Send ping to address
 #Check each response with receive 
-def get_ping(addrs)    
+def get_ping(addrs):    
     mp = MultiPing(addrs)
     mp.send()
     responses, no_responses = mp.receive(0.1)
